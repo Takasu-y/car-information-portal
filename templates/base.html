@@ -1,0 +1,33 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    {% bootstrap_css %}
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/style.css' %}"> -->
+    <title>Car Informatoin Portal</title>
+</head>
+<body>
+    <header>
+        {% include 'includes/base/nav.html' %}
+    </header>
+    <main>
+
+        {% block main %}
+
+        {% endblock main %}
+
+    </main>
+    <footer>
+        {% include 'includes/base/footer.html' %}
+    </footer>
+
+
+    {% bootstrap_javascript %}
+</body>
+</html>
