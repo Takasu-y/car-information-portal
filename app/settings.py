@@ -1,7 +1,7 @@
-import django_heroku
 from pathlib import Path
 import os
 import environ
+import django_heroku
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -138,6 +138,9 @@ STATICFILES_DIRS = [
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
 
 # Upload Settings
 
