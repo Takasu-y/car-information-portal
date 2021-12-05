@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
+from .views import IndexView, ModelListView, fetchAPI
 
 urlpatterns = [
-    path("", views.index, name='index'),
+    path("", IndexView.as_view(), name='index'),
+    path("modelList/make/", ModelListView.as_view(), name='modelList'),
+    path("fetchAPI/", fetchAPI, name="fetchAPI")
 ]

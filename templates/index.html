@@ -1,8 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load django_bootstrap5 %}
 
 
 {% block main %}
     <h1>hello world</h1>
+
+
+    {% if getm %}
+        <p>{{ getm }}</p>
+        <p>getmが呼ばれたよ</p>
+    {% else %}
+        <p>{{ postm }}</p>
+        <p>postメソッドが呼ばれたよ</p>
+    {% endif %}
+
+
+    <div class="container">
+        {% if models %}
+
+            {% for model in models %}
+                <p>{{ model.model_make_display }}</p>
+            {% endfor %}
+
+        {% endif %}
+    </div>
+
+
+
+
+
 {% endblock main %}

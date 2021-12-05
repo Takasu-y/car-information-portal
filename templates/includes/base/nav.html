@@ -1,8 +1,30 @@
-<nav class="navbar navbar-light bg-light">
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-        <!-- <img src="#" alt="" width="30" height="24" class="d-inline-block align-top"> -->
-        Car Information Portal
-    </a>
+        <img src="{% static 'assets/img/logo.png' %}" alt="サイトロゴ"  width="120" class="d-inline-block align-top">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'modelList' %}">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex" method="post">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">submit</button>
+                </form>
+            </div>
+        </div>
     </div>
 </nav>
