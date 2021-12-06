@@ -12,7 +12,8 @@ import json
 
 def fetchAPI(request):
     user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36'
-    url = ' https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&make=Ford&model=excursion&year=2005'
+    # url = ' https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getTrims&make=Ford&year=2005'
+    url = 'https://www.carqueryapi.com/api/0.3/?callback=?&cmd=getMakes&year=2020'
 
     header = {
         'User-Agent': user_agent,
@@ -25,15 +26,19 @@ def fetchAPI(request):
     response = requests.get(url, headers=header)
 
     # str -> dict
-    models = json.loads(response.text[2:-2])
+    models = json.loads(response.text[2:-2])['Makes']
 
+    # 集合に変換
+    setMakers = set()
+    for model in models:
+        setMakers.add(model["make_display"])
 
-    pprint.pprint(models['Trims'])
 
     context = {
-        'models': models['Trims']
+        'models': setMakers
     }
     return render(request, 'index.html', context)
+
 
 class IndexView(TemplateView):
 
