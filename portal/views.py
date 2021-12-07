@@ -5,6 +5,8 @@ import requests
 import pprint
 import json
 
+from . import maker_logo
+
 
 
 # Create your views here.
@@ -33,6 +35,8 @@ def fetchAPI(request):
     for model in models:
         setMakers.add(model["make_display"])
 
+    # pprint.pprint(setMakers)
+
 
     context = {
         'models': setMakers
@@ -45,7 +49,9 @@ class IndexView(TemplateView):
     template_name = "index.html"
 
     def get(self, request, *args, **kwargs):
-        context = { "getm": "getメソッド" }
+        logos = maker_logo.makers
+
+        context = { "logos": logos }
         return render(request, self.template_name, context)
 
     def post(self, request):

@@ -3,27 +3,38 @@
 
 
 {% block main %}
-    <h1>hello world</h1>
 
+    {% if logos %}
 
-    {% if getm %}
-        <p>{{ getm }}</p>
-        <p>getmが呼ばれたよ</p>
-    {% else %}
-        <p>{{ postm }}</p>
-        <p>postメソッドが呼ばれたよ</p>
+    <div class="container">
+        <div class="row d-flex">
+
+            {% for key, value in logos.items %}
+            <div class="col-4 p-3 text-center">
+                <div class="border logo">
+                    <img class="w-100" style="object-fit: cover;" src="{% static 'assets/img/maker_logo/'|add:value %}" alt="{{ key }}">
+                    <div class="overlay d-flex align-items-center justify-content-center">
+                        <h2 class="text-white">{{ key }}</h2>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
     {% endif %}
 
 
-    <div class="container">
-        {% if models %}
+    {% if models %}
+        <div class="container">
 
             {% for model in models %}
                 <p>{{ model }}</p>
             {% endfor %}
 
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
 
 
