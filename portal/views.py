@@ -1,4 +1,5 @@
 from datetime import datetime
+from os import mkdir
 from django import forms
 from django.shortcuts import render
 from django.views.generic import TemplateView
@@ -45,9 +46,21 @@ class IndexView(TemplateView):
         return render(request, "index.html", context)
 
     def post(self, request):
-        form = forms.SearchFrom()
+        maker = request.POST.get("maker")
+        model = request.POST.get("model")
+        maxYear = request.POST.get("maxYear")
+        minYear = request.POST.get("minYear")
+        if maxYear == "Any":
+            maxYear = ""
 
-        fetchData = fetchAPI("Audi", "", 2021, 2021)
+        form = forms.SearchFrom(initial={
+            "maker":maker,
+            "model": model,
+            "minYear": minYear,
+            "maxYear": maxYear
+        })
+
+        fetchData = fetchAPI(maker, model, minYear, maxYear)
 
         context = {
             "form": form,
@@ -70,12 +83,19 @@ class ModelListView(TemplateView):
         for model in fetchModels:
             setModels.add(model["model_name"])
 
+        print(setModels)
+
         makerDict = {
             'name': maker,
             'logo': maker_logo.makers[maker]
         }
 
-        form = forms.SearchFrom()
+        form = forms.SearchFrom(initial={
+            "maker": maker,
+            "model": "",
+            "minYear": currentYear,
+            "maxYear": currentYear
+        })
 
         context = {
             "maker": makerDict,
@@ -98,7 +118,12 @@ class ResultView(TemplateView):
             'logo': maker_logo.makers[maker]
         }
 
-        form = forms.SearchFrom()
+        form = forms.SearchFrom(initial={
+            "maker": maker,
+            "model": model,
+            "minYear": 1900,
+            "maxYear": 2021
+        })
 
         context = {
             "maker": makerDict,

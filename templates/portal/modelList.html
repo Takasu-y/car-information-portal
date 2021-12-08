@@ -13,7 +13,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-6 mx-auto text-center">
-                <img class="border" src="{% static 'assets/img/maker_logo/'|add:maker.logo %}" alt="{{ maker.name }}">
+                <img class="border w-100" src="{% static 'assets/img/maker_logo/'|add:maker.logo %}" alt="{{ maker.name }}">
                 <div class="mt-3">
                     {% for model in models %}
                         <a href="{% url 'portal:result' maker.name model %}"><p>{{ model }}</p></a>

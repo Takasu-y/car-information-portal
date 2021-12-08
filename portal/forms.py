@@ -4,13 +4,19 @@ import datetime
 from . import maker_logo
 
 # maker select
-choiceMaker = [("", "select maker")]
-for i, maker in enumerate(maker_logo.makers):
-    choiceMaker.append((i, maker))
+choiceMaker = [("select maker", "select maker")]
+for maker in maker_logo.makers:
+    choiceMaker.append((maker, maker))
 
 
 #model select
-choiceModel = [("", "select Model"), ("", "Any")]
+choiceModel = [("select Model", "select Model"), ("", "Any")]
+
+#minYear
+minYear = 1886
+
+#current Year
+currentYear = datetime.datetime.now().year
 
 class SearchFrom(forms.Form):
     maker = forms.ChoiceField(
@@ -18,6 +24,6 @@ class SearchFrom(forms.Form):
         required=True,
         widget=forms.widgets.Select
     )
-    model = forms.ChoiceField(choices=choiceModel)
-    min_year = forms.IntegerField(initial=datetime.datetime.now().year, min_value=1886, max_value=datetime.datetime.now().year)
-    max_year = forms.IntegerField(initial=datetime.datetime.now().year, min_value=1886, max_value=datetime.datetime.now().year)
+    model = forms.ChoiceField(initial=choiceModel[0], choices=choiceModel)
+    minYear = forms.IntegerField(initial=currentYear, min_value=minYear, max_value=currentYear)
+    maxYear = forms.IntegerField(initial=currentYear, min_value=minYear, max_value=currentYear)
