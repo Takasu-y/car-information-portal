@@ -11,12 +11,14 @@
 
             {% for key, value in logos.items %}
             <div class="col-4 p-3 text-center">
-                <div class="border logo">
-                    <img class="w-100" style="object-fit: cover;" src="{% static 'assets/img/maker_logo/'|add:value %}" alt="{{ key }}">
-                    <div class="overlay d-flex align-items-center justify-content-center">
-                        <h2 class="text-white">{{ key }}</h2>
+                <a href="{% url 'portal:modelList' key %}">
+                    <div class="border logo">
+                        <img class="w-100" style="object-fit: cover;" src="{% static 'assets/img/maker_logo/'|add:value %}" alt="{{ key }}">
+                        <div class="overlay d-flex align-items-center justify-content-center">
+                            <h2 class="text-white">{{ key }}</h2>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             {% endfor %}
 
@@ -24,20 +26,5 @@
     </div>
 
     {% endif %}
-
-
-    {% if models %}
-        <div class="container">
-
-            {% for model in models %}
-                <p>{{ model }}</p>
-            {% endfor %}
-
-        </div>
-    {% endif %}
-
-
-
-
 
 {% endblock main %}
