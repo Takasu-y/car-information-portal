@@ -1,11 +1,13 @@
+from datetime import datetime
+from django import forms
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 import requests
-import pprint
 import json
-
+import datetime
 
 from . import maker_logo
+from . import forms
 
 
 
@@ -32,17 +34,26 @@ def fetchAPI(make, model, min_year, max_year):
 
 class IndexView(TemplateView):
 
-    template_name = "index.html"
-
     def get(self, request):
         logos = maker_logo.makers
+        form = forms.SearchFrom()
 
-        context = { "logos": logos }
-        return render(request, self.template_name, context)
+        context = {
+            "logos": logos,
+            "form": form
+        }
+        return render(request, "index.html", context)
 
     def post(self, request):
-        context = { "postm": "postメソッド" }
-        return render(request, self.template_name, context)
+        form = forms.SearchFrom()
+
+        fetchData = fetchAPI("Audi", "", 2021, 2021)
+
+        context = {
+            "form": form,
+            "data": fetchData
+        }
+        return render(request, "portal/resultList.html", context)
 
 
 
@@ -52,7 +63,8 @@ class ModelListView(TemplateView):
 
     def get(self, request, maker):
 
-        fetchModels = fetchAPI(maker, "", 2021, 2021)
+        currentYear = datetime.datetime.now().year
+        fetchModels = fetchAPI(maker, "", currentYear, currentYear)
 
         setModels = set()
         for model in fetchModels:
@@ -63,9 +75,12 @@ class ModelListView(TemplateView):
             'logo': maker_logo.makers[maker]
         }
 
+        form = forms.SearchFrom()
+
         context = {
             "maker": makerDict,
-            "models":setModels
+            "models":setModels,
+            "form": form
         }
         return render(request, self.template_name, context)
 
@@ -83,9 +98,11 @@ class ResultView(TemplateView):
             'logo': maker_logo.makers[maker]
         }
 
+        form = forms.SearchFrom()
 
         context = {
             "maker": makerDict,
-            "data": fetchData
+            "data": fetchData,
+            "form": form
         }
         return render(request, self.template_name, context)

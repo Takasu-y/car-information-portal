@@ -2,6 +2,14 @@
 {% load static %}
 
 
+
+{% block header %}
+
+    {% include 'includes/base/nav.html' with form=form %}
+
+{% endblock header %}
+
+
 {% block main %}
 
     {% if logos %}
@@ -10,10 +18,10 @@
         <div class="row d-flex">
 
             {% for key, value in logos.items %}
-            <div class="col-4 p-3 text-center">
+            <div class="col-md-4 col-sm-10 p-3 text-center">
                 <a href="{% url 'portal:modelList' key %}">
                     <div class="border logo">
-                        <img class="w-100" style="object-fit: cover;" src="{% static 'assets/img/maker_logo/'|add:value %}" alt="{{ key }}">
+                        <img class="w-100 my-auto" style="object-fit: cover;" src="{% static 'assets/img/maker_logo/'|add:value %}" alt="{{ key }}">
                         <div class="overlay d-flex align-items-center justify-content-center">
                             <h2 class="text-white">{{ key }}</h2>
                         </div>
