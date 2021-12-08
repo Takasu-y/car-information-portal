@@ -1,8 +1,25 @@
-<nav class="navbar navbar-light bg-light">
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-        <!-- <img src="#" alt="" width="30" height="24" class="d-inline-block align-top"> -->
-        Car Information Portal
-    </a>
+        <a href="/">
+            <img src="{% static 'assets/img/logo.png' %}" alt="サイトロゴ"  width="120" class="d-inline-block align-top">
+        </a>
+        <div class="container">
+            <div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-10 text-center">
+                            {{ form }}
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-outline-success" type="submit">submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
 </nav>

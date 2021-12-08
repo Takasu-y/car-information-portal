@@ -1,6 +1,10 @@
 from django.urls import path
-from . import views
+from .views import IndexView, ModelListView, ResultView
+
+app_name='portal'
 
 urlpatterns = [
-    path("", views.index, name='index'),
+    path("", IndexView.as_view(), name='index'),
+    path("modelList/make/<str:maker>", ModelListView.as_view(), name='modelList'),
+    path("result/<str:maker>/<str:model>/", ResultView.as_view(), name='result'),
 ]
