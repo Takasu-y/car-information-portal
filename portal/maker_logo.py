@@ -32,6 +32,7 @@ makers = {
     'Smart': 'logo_smart.jpg',
     'Subaru': 'logo_subaru.jpg',
     'Toyota': 'logo_toyota.jpeg',
+    'Tesla': 'logo_tesla.jpg',
     'Volkswagen': 'logo_volkswagen.jpg',
     'Volvo': 'logo_volvo.jpg',
     'Mitsubishi': 'logo_mitsubishi.jpg',

@@ -18,4 +18,5 @@ makerSelector.addEventListener('change', () => {
         modelSelector.innerHTML += `<option value="${model}">${model}</option>`;
     });
 
+
 })

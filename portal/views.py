@@ -77,7 +77,7 @@ class ModelListView(TemplateView):
     def get(self, request, maker):
 
         currentYear = datetime.datetime.now().year
-        fetchModels = fetchAPI(maker, "", currentYear, currentYear)
+        fetchModels = fetchAPI(maker, "", 1984, currentYear)
 
         setModels = set()
         for model in fetchModels:

@@ -32,6 +32,7 @@ export const modelList = {
     "Smart": ['fortwo'],
     "Subaru": ['Forester', 'WRX', 'Legacy', 'XV Crosstrek', 'BRZ', 'Outback', 'Impreza'],
     "Toyota": ['Camry', 'Yaris', 'Land Cruiser', 'Camry Hybrid', 'Prius Plug-in', 'Highlander', 'Sienna', 'Corolla', 'RAV4', 'Avalon Hybrid', 'Prius v', 'Prius c', 'Highlander Hybrid', 'Tundra', 'Tacoma', '4Runner', 'Sequoia', 'Avalon', 'Venza', 'Prius'],
+    "Tesla": ['Roadster'],
     "Volkswagen": ['e-Golf', 'CC', 'Eos', 'Jetta', 'Golf R', 'Passat', 'Beetle', 'Golf SportWagen', 'Golf GTI', 'Tiguan', 'Beetle Convertible', 'Golf'],
     "Volvo": ['XC70', 'V60 Cross Country', 'XC60', 'S80', 'S60', 'V60'],
     "Mitsubishi": ['Lancer Evolution', 'Mirage', 'Outlander', 'Outlander Sport', 'Lancer'],
